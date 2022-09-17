@@ -1,28 +1,45 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\Schema;
+namespace App\Http\Controllers;
 
-class Student extends Migration
+use App\Models\Student;
+use Illuminate\Http\Request;
+
+class StudentController extends Controller
 {
-
-    public function up()
+    public function getAll()
     {
-        Schema::create('estudiante', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('nombre',75);
-            $table->string('apellido',75);
-            $table->string('edad',75);
-            $table->string('grado',75);
-            $table->string('sexo',75);
-            $table->timestamps();
-        });
+        return Student::all();
     }
-
-
-    public function down()
+    public function index()
     {
-        Schema::drop('estudiante');
+        $students = Student::all();
+        return view('welcome', compact('Students'));
+    }
+    public function delete($id)
+    {
+        return Student::find($id)->delete();
+    }
+    public function edit(Request $request, $id)
+    {
+        $data = $request->validate([
+            'nombre' => 'required',
+            'apellido' => 'required',
+            'edad' => 'required',
+            'grado' => 'required',
+            'sexo' => 'required',
+        ]);
+        Student::find($id)->update($data);
+    }
+    public function create(Request $request)
+    {
+        $data = $request->validate([
+            'nombre' => 'required',
+            'apellido' => 'required',
+            'edad' => 'required',
+            'grado' => 'required',
+            'sexo' => 'required',
+        ]);
+        Student::insert($data);
     }
 }
