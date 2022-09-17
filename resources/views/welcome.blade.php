@@ -33,11 +33,11 @@
                 <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Last Name</th>
-                        <th scope="col">Age</th>
-                        <th scope="col">Term</th>
-                        <th scope="col">Sex</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Apellido</th>
+                        <th scope="col">Edad</th>
+                        <th scope="col">Grado</th>
+                        <th scope="col">Sexo</th>
                     </tr>
                 </thead>
                 <tbody>
